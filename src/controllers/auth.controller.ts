@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, request, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import AuthService from "../services/auth.service";
 
