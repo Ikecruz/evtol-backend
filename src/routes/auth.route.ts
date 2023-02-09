@@ -3,6 +3,7 @@ import AuthController from '../controllers/auth.controller';
 import LoginDto from '../dtos/login.dto';
 import ErrorMessage from '../enums/validation.error.enums';
 import { IRoute } from '../interfaces/route.interface';
+import authMiddleware from '../middlewares/auth.middleware';
 import dtoValidationMiddleware from '../middlewares/validation.middleware';
 
 export default class AuthRoute implements IRoute{
@@ -19,6 +20,7 @@ export default class AuthRoute implements IRoute{
         this.router.post(
             `${this.path}/login`, 
             dtoValidationMiddleware(LoginDto, "body", ErrorMessage.FIELDS),
+            authMiddleware,
             this.controller.login
         )
 
