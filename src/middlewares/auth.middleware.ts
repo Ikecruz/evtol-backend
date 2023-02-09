@@ -1,18 +1,19 @@
+import { User } from "@prisma/client";
 import { NextFunction, Request, RequestHandler, Response } from "express";
 import { StatusCodes } from "http-status-codes";
+import database from "../database";
 import AuthService from "../services/auth.service";
-import UserService from "../services/user.service";
 import HttpException from "../utils/exception";
 
-export const authMiddleware:RequestHandler = async ( 
+const authMiddleware:RequestHandler = async ( 
     req: Request, 
     res: Response ,
     next: NextFunction 
 ) => {
 
     const token = req.headers.authorization?.split(' ')[1]
-    const userService = new UserService()
     const authService = new AuthService()
+    const ormServices = database.getClient()
 
     if (!token) {
         throw new HttpException(
@@ -30,10 +31,16 @@ export const authMiddleware:RequestHandler = async (
         )
     }
 
-    const user = await userService.findById(userPayload.id)
+    const user = await ormServices.user.findFirst({
+        where: {
+            id: userPayload.id
+        }
+    })
 
-    req.authUser = user
+    req.authUser = user as User
 
     next()
 
 }
+
+export default authMiddleware
