@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 import { StatusCodes } from 'http-status-codes';
 import db from "../database"
 import HttpException from '../utils/exception';
@@ -16,29 +16,32 @@ export default class AuthService {
     }
 
     public async login (loginDto: LoginDto) {
-        const user = await this.ormService.user.findFirst({
+        const userFromDb = await this.ormService.user.findFirst({
             where: {
-                email: loginDto.email
+                email: loginDto.email,
+                
             }
         })
 
-        if (!user) {
+        if (!userFromDb) {
             throw new HttpException(
                 StatusCodes.NOT_FOUND,
                 'Record not found'
             )
         }
 
-        const passwordCorrect = await this.passwordsMatch(user?.password as string, loginDto.password)
+        const passwordCorrect = await this.passwordsMatch(userFromDb.password as string, loginDto.password)
 
-        if (!user && !passwordCorrect) {
+        if (!userFromDb || !passwordCorrect) {
             throw new HttpException(
                 StatusCodes.BAD_REQUEST,
                 'Password incorrect'
             )
         }
 
-        const token = this.signJwt(user.id)
+        const token = this.signJwt(userFromDb.id)
+
+        const { password, ...user  } = userFromDb
 
         return { user, token }
 
@@ -57,11 +60,12 @@ export default class AuthService {
     }
 
     public async hashPassword (password: string) {
-        return await bcrypt.hash(password, 10)
+        const salt = await bcrypt.genSalt(10)
+        return await bcrypt.hash(password, salt)
     }
 
-    private async passwordsMatch (currentPassword: string, newPassword: string): Promise<boolean> {
-        return await bcrypt.compare(currentPassword, newPassword)
+    private async passwordsMatch (passwordFromDb: string, loginPassword: string): Promise<boolean> {
+        return await bcrypt.compare(loginPassword, passwordFromDb)
     }
 
 }
