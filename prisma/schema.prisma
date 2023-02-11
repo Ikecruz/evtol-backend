@@ -43,7 +43,7 @@ model Evtol {
   model            Model
   weight_limit     Int
   battery_capacity Int    @default(100)
-  state            State
+  state            State  @default(IDLE)
 
   trip Trip[]
 
