@@ -10,10 +10,73 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Model {
+  Lightweight
+  Middleweight
+  Cruiserweight
+  Heavyweight
+}
+
+enum State {
+  IDLE
+  LOADING
+  LOADED
+  DELIVERING
+  DELIVERED
+  RETURNING
+}
+
 model User {
-  id         String    @id @default(auto()) @map("_id") @db.ObjectId
-  email      String    @unique
-  password   String
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  email    String @unique
+  password String
+
   created_at DateTime  @default(now())
   updated_at DateTime? @updatedAt
+
+  @@map("user")
+}
+
+model Evtol {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  serial_number    String @unique
+  model            Model
+  weight_limit     Int
+  battery_capacity Int    @default(100)
+  state            State
+
+  trip Trip[]
+
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("evtol")
+}
+
+model Medication {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  name   String
+  weight Int
+  code   String
+  image  String
+
+  trip_id String @db.ObjectId
+  trip    Trip   @relation(fields: [trip_id], references: [id])
+
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("medication")
+}
+
+model Trip {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  evtol_id    String       @db.ObjectId
+  evtol       Evtol?       @relation(fields: [evtol_id], references: [id])
+  medications Medication[]
+
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("trip")
 }
