@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import AuthController from '../controllers/auth.controller';
 import LoginDto from '../dtos/login.dto';
-import ErrorMessage from '../enums/validation.error.enums';
+import ErrorMessage from '../enums/validation.error.enum';
 import { IRoute } from '../interfaces/route.interface';
 import authMiddleware from '../middlewares/auth.middleware';
 import dtoValidationMiddleware from '../middlewares/validation.middleware';

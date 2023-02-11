@@ -4,7 +4,7 @@ import { Request, RequestHandler } from "express";
 import { logger } from "../utils/logger";
 import { sanitize } from "class-sanitizer";
 import HttpException from "../utils/exception";
-import ErrorMessage from "../enums/validation.error.enums";
+import ErrorMessage from "../enums/validation.error.enum";
 
 type ErrorMessage =  (typeof ErrorMessage)[keyof typeof ErrorMessage]
 
