@@ -9,6 +9,8 @@ async function main() {
 
     try {
 
+        logger.info(`🌱 [Seeding]: Admin seed is running`)
+
         const password = await authService.hashPassword("ikecruz")
 
         await prisma.user.upsert({
@@ -21,6 +23,8 @@ async function main() {
                 password: password
             }
         })
+        
+        logger.info(`🌱 [Seeding]: Admin seed complete`)
 
     } catch (error) {
         logger.error("Error seeding database")
