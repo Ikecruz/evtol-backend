@@ -20,7 +20,6 @@ export default class AuthRoute implements IRoute{
         this.router.post(
             `${this.path}/login`, 
             dtoValidationMiddleware(LoginDto, "body", ErrorMessage.FIELDS),
-            authMiddleware,
             this.controller.login
         )
 
