@@ -1,4 +1,6 @@
-import { IsNotEmpty, IsNumber, IsPositive, IsString, IsUppercase } from "class-validator";
+import { Transform, Type } from "class-transformer";
+import "reflect-metadata"
+import { IsInt, IsNotEmpty, IsNumber, IsNumberString, IsPositive, IsString, IsUppercase } from "class-validator";
 
 export default class CreateMedicationDto {
 
@@ -6,9 +8,8 @@ export default class CreateMedicationDto {
     @IsNotEmpty()
     name: string
 
-    @IsNumber()
-    @IsNotEmpty()
-    @IsPositive()
+    @Type(() => Number)
+    @IsInt()
     weight: number
 
     @IsString()
