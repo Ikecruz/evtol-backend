@@ -56,6 +56,7 @@ export default class App {
 
         } catch (error) {
             logger.error(`🛢️  [Database]: Database connection failed`)
+            console.log(error)
         }
 
     }
