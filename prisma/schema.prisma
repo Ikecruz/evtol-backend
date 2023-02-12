@@ -60,8 +60,8 @@ model Medication {
   code   String
   image  String
 
-  trip_id String @db.ObjectId
-  trip    Trip   @relation(fields: [trip_id], references: [id])
+  trip_id String? @db.ObjectId
+  trip    Trip?   @relation(fields: [trip_id], references: [id])
 
   created_at DateTime  @default(now())
   updated_at DateTime? @updatedAt
