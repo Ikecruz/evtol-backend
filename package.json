@@ -7,7 +7,7 @@
     "seed": "ts-node src/database/seeds/seed.ts"
   },
   "scripts": {
-    "db": "prisma db push && prisma db seed",
+    "db": "pnpm prisma db push && pnpm prisma db seed",
     "build": "pnpm clean && pnpm db && npx tsc",
     "start": "node dist/index.js",
     "clean": "rm -rf dist/",
