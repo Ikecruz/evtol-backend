@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Betamethasone Valerate",
+        "weight": 93,
+        "code": "US-TX",
+        "image": "http://dummyimage.com/109x100.png/dddddd/000000"
+    },
+    {
+        "name": "Olanzapine",
+        "weight": 11,
+        "code": "SD-07",
+        "image": "http://dummyimage.com/115x100.png/cc0000/ffffff"
+    },
+    {
+        "name": "hydrocodone bitartrate, ibuprofen",
+        "weight": 130,
+        "code": "BS-AC",
+        "image": "http://dummyimage.com/110x100.png/ff4444/ffffff"
+    },
+    {
+        "name": "Hypophysis 7 Special Order",
+        "weight": 124,
+        "code": "MM-07",
+        "image": "http://dummyimage.com/233x100.png/5fa2dd/ffffff"
+    },
+    {
+        "name": "Metaproterenol Sulfate",
+        "weight": 147,
+        "code": "AI-U-A",
+        "image": "http://dummyimage.com/108x100.png/dddddd/000000"
+    },
+    {
+        "name": "SPONGIA OFFICINALIS SKELETON, ROASTED",
+        "weight": 33,
+        "code": "US-CA",
+        "image": "http://dummyimage.com/249x100.png/dddddd/000000"
+    },
+    {
+        "name": "MINERAL OIL, PRAMOXINE HYDROCHLORIDE AND ZINC OXIDE",
+        "weight": 114,
+        "code": "US-CA",
+        "image": "http://dummyimage.com/240x100.png/5fa2dd/ffffff"
+    },
+    {
+        "name": "ATORVASTATIN CALCIUM",
+        "weight": 47,
+        "code": "US-SC",
+        "image": "http://dummyimage.com/129x100.png/5fa2dd/ffffff"
+    },
+    {
+        "name": "Clorazepate Dipotassium",
+        "weight": 76,
+        "code": "US-NY",
+        "image": "http://dummyimage.com/146x100.png/dddddd/000000"
+    },
+    {
+        "name": "Famotidine",
+        "weight": 157,
+        "code": "AR-D",
+        "image": "http://dummyimage.com/134x100.png/ff4444/ffffff"
+    }
+]
