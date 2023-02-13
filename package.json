@@ -4,10 +4,10 @@
   "description": "",
   "main": "dist/index.js",
   "prisma": {
-    "seed": "pnpm dlx ts-node src/database/seeds/seed.ts"
+    "seed": "ts-node src/database/seeds/seed.ts"
   },
   "scripts": {
-    "db": "pnpm dlx prisma db push && pnpm dlx prisma db seed",
+    "db": "prisma db push && prisma db seed",
     "build": "pnpm clean && pnpm db && npx tsc",
     "start": "node dist/index.js",
     "clean": "rm -rf dist/",
