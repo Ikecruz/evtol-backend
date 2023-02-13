@@ -1,5 +1,5 @@
 {
-  "name": "taski",
+  "name": "evtol",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -7,8 +7,10 @@
     "seed": "ts-node src/database/seeds/seed.ts"
   },
   "scripts": {
-    "build": "npx tsc",
+    "db": "prisma db push && prisma db seed",
+    "build": "pnpm clean && pnpm db && npx tsc",
     "start": "node dist/index.js",
+    "clean": "rm -rf dist/",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
   },
   "keywords": [],
