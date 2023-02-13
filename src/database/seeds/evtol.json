@@ -1,0 +1,27 @@
+[
+    {
+        "serial_number": "294-47-4284",
+        "model": "Heavyweight",
+        "weight_limit": 500
+    },
+    {
+        "serial_number": "222-13-1047",
+        "model": "Cruiserweight",
+        "weight_limit": 300
+    },
+    {
+        "serial_number": "447-44-7862",
+        "model": "Heavyweight",
+        "weight_limit": 500
+    },
+    {
+        "serial_number": "454-40-7128",
+        "model": "Lightweight",
+        "weight_limit": 200
+    },
+    {
+        "serial_number": "327-35-3042",
+        "model": "Middleweight",
+        "weight_limit": 400
+    }
+]
