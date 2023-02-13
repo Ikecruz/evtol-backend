@@ -52,10 +52,10 @@ export default class App {
         try {
 
             await this.db.connect()
-            logger.info(`🛢️  [Database]: Database connected`)
+            logger.info(`🛢️ [Database]: Database connected`)
 
         } catch (error) {
-            logger.error(`🛢️  [Database]: Database connection failed`)
+            logger.error(`🛢️ [Database]: Database connection failed`)
             console.log(error)
         }
 
@@ -68,7 +68,7 @@ export default class App {
             api_secret: CLOUDINARY_API_SECRET
         })
 
-        logger.info(`🖼️ [cloudinary]: Cloudinary configured`)
+        logger.info(`🖼️  [cloudinary]: Cloudinary configured`)
     }
 
     private async initializeErrorHandling() {
