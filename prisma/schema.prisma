@@ -45,10 +45,11 @@ model Evtol {
   battery_capacity Int    @default(100)
   state            State  @default(IDLE)
 
-  trip Trip[]
+  trips Trip[]
 
-  created_at DateTime  @default(now())
-  updated_at DateTime? @updatedAt
+  created_at   DateTime       @default(now())
+  updated_at   DateTime?      @updatedAt
+  BatteryAudit BatteryAudit[]
 
   @@map("evtol")
 }
@@ -60,8 +61,8 @@ model Medication {
   code   String
   image  String
 
-  trip_id String? @db.ObjectId
-  trip    Trip?   @relation(fields: [trip_id], references: [id])
+  trips_id String[] @db.ObjectId
+  trips    Trip[]   @relation(fields: [trips_id], references: [id])
 
   created_at DateTime  @default(now())
   updated_at DateTime? @updatedAt
@@ -70,13 +71,25 @@ model Medication {
 }
 
 model Trip {
-  id          String       @id @default(auto()) @map("_id") @db.ObjectId
-  evtol_id    String       @db.ObjectId
-  evtol       Evtol?       @relation(fields: [evtol_id], references: [id])
-  medications Medication[]
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  evtol_id String @db.ObjectId
+  evtol    Evtol  @relation(fields: [evtol_id], references: [id])
+
+  medication_id String[]     @db.ObjectId
+  medications   Medication[] @relation(fields: [medication_id], references: [id])
+  is_active     Boolean      @default(true)
 
   created_at DateTime  @default(now())
   updated_at DateTime? @updatedAt
 
   @@map("trip")
+}
+
+model BatteryAudit {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  evtol_id String @db.ObjectId
+  evtol    Evtol  @relation(fields: [evtol_id], references: [id])
+
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
 }
