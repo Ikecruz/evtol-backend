@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "prisma": {
-    "seed": "ts-node src/database/seeds/seed.ts"
+    "seed": "pnpm dlx ts-node src/database/seeds/seed.ts"
   },
   "scripts": {
     "db": "pnpm dlx prisma db push && pnpm dlx prisma db seed",
