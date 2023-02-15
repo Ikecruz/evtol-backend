@@ -36,7 +36,7 @@ export default class EvtolRoute implements IRoute{
         )
 
         this.router.get(
-            `${this.path}/:state`,
+            `${this.path}/state/:state`,
             authMiddleware,
             this.evtolController.findByState
         )
